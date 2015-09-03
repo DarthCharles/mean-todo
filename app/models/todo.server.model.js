@@ -6,8 +6,8 @@
 var mongoose = require('mongoose'),
 Schema = mongoose.Schema;
 
-function	validateLength(){
-	return v.length <= 15;
+function	validateLength(v){
+	return v.length <= 50;
 }
 /**
 * Todo Schema
@@ -18,17 +18,13 @@ var TodoSchema = new Schema({
 		type: Date,
 		default: Date.now
 	},
-	name: {
+	task: {
 		type: String,
 		default: '',
 		trim: true,
 		unique: true,
-		required: 'Name can not me blank',
-		validate: [validateLength, 'name must be 15 chars in length or less']
-	},
-	description: {
-		type: String,
-		default: ''
+		required: 'task can not me blank',
+		validate: [validateLength, 'task must be 50 chars in length or less']
 	},
 	status: {
 		type: String,
