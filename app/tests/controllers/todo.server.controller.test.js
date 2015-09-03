@@ -9,8 +9,6 @@ request = require('supertest');
 
 var Todo = mongoose.model('Todo');
 
-var testTodo;
-
 /**
 * Unit tests
 */
@@ -22,7 +20,6 @@ describe('Todos Controller Tests', function(){
 
 	var response = {};
 
-
 	before(function(done) {
 		request(app).post('/todos')
 		.send(todo)
@@ -32,27 +29,13 @@ describe('Todos Controller Tests', function(){
 				throw err;
 			}
 			response = res.body;
-			res.status.should.be.equal(400);
+			res.status.should.be.equal(201);
 			done();
 		});
 	});
 
 	it('should get all todos', function (done) {
 		request(app).get('/todos')
-		.end(function (err, res) {
-			if (err) {
-				throw err;
-			}
-			res.status.should.be.equal(200);
-			done();
-		});
-	});
-
-
-	it('should update todo by id', function(done){
-
-		request(app).update('/todos' + response._id)
-		.send(item)
 		.end(function (err, res) {
 			if (err) {
 				throw err;
@@ -70,18 +53,33 @@ describe('Todos Controller Tests', function(){
 			}
 			res.body.task.should.equal('Walk the dog');
 			done();
-
 		});
+	});
 
+	it('should update todo by id', function(done){
+		var item = { task: 'Dont wash the dishes',
+								 status: 'archived' };
+
+		request(app).put('/todos/' + response._id)
+		.send(item)
+		.expect(200)
+		.end(function (err, res) {
+			if (err) {
+				throw err;
+			}
+
+			response._id.should.be.equal(res.body._id)
+			res.body.task.should.be.equal('Dont wash the dishes');
+			res.body.status.should.be.equal('archived');
+
+			done();
+		});
 	});
 
 	it('should delete todo by id', function(done){
 		request(app).delete('/todos/' + response._id)
 		.end(function (err, res) {
 			res.status.should.equal(200);
-			Todo.count({}, function (err, c) {
-				console.log(c);
-			});
 		});
 		done();
 	});
