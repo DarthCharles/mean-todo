@@ -227,7 +227,6 @@ label[for='toggle-all'] {
 }
 
 #todo-list li .destroy {
-	display: none;
 	position: absolute;
 	top: 0;
 	right: 10px;
@@ -392,6 +391,19 @@ html #clear-completed:active {
 	}
 }
 
-#new-task {
+.page-header{
+font-family: 'Coda Caption', sans-serif;
+	text-align: center;
 
+}
+
+.navbar-brand
+ {
+	 font-family: 'Coda Caption', sans-serif;
+ }
+
+.jumbotron {
+	margin-top: 40px;
+	font-family: 'Coda Caption', sans-serif;
+		text-align: center;
 }

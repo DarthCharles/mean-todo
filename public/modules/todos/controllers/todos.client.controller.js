@@ -12,8 +12,8 @@ function($scope, $location, Todos) {
 
     // Redirect after save
     todo.$save(function(response) {
-      $location.path('todos');
-
+      //$location.path('todos');
+      $scope.find();
       // Clear form fields
       $scope.task = '';
     }, function(errorResponse) {
@@ -32,21 +32,21 @@ function($scope, $location, Todos) {
 
   };
 
-		$scope.remove = function(todo) {
-			if ( todo ) {
-				todo.$remove();
+  $scope.remove = function(todo) {
+    if ( todo ) {
+      todo.$remove();
 
-				for (var i in $scope.todos) {
-					if ($scope.todos [i] === todo) {
-						$scope.todos.splice(i, 1);
-					}
-				}
-			} else {
-				$scope.todo.$remove(function() {
-					$location.path('todos');
-				});
-			}
-		};
+      for (var i in $scope.todos) {
+        if ($scope.todos [i] === todo) {
+          $scope.todos.splice(i, 1);
+        }
+      }
+    } else {
+      $scope.todo.$remove(function() {
+        $location.path('todos');
+      });
+    }
+  };
   // Find a list of Todos
   $scope.find = function() {
     $scope.todos = Todos.query();
