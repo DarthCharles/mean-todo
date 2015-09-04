@@ -58,7 +58,7 @@ describe('Todos Controller Tests', function(){
 
 	it('should update todo by id', function(done){
 		var item = { task: 'Dont wash the dishes',
-								 status: 'archived' };
+								 completed: true };
 
 		request(app).put('/todos/' + response._id)
 		.send(item)
@@ -68,9 +68,9 @@ describe('Todos Controller Tests', function(){
 				throw err;
 			}
 
-			response._id.should.be.equal(res.body._id)
+			response._id.should.be.equal(res.body._id);
 			res.body.task.should.be.equal('Dont wash the dishes');
-			res.body.status.should.be.equal('archived');
+			res.body.completed.should.be.equal(true);
 
 			done();
 		});

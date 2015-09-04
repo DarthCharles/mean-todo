@@ -26,9 +26,9 @@ var TodoSchema = new Schema({
 		required: 'task can not me blank',
 		validate: [validateLength, 'task must be 50 chars in length or less']
 	},
-	status: {
-		type: String,
-		default: 'active'
+	completed: {
+		type: Boolean,
+		default: false
 	}
 });
 

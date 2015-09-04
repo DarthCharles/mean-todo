@@ -1,0 +1,29 @@
+
+<section data-ng-controller="TodosController" data-ng-init="find()">
+  <div class="page-header">
+    <h1>TODO</h1>
+  </div>
+  <!-- <div class="list-group">
+    <a data-ng-repeat="todo in todos"  class="list-group-item">
+      <input type="checkbox" name="name" value="">
+
+      <h4 class="list-group-item-heading" data-ng-bind="todo.task"></h4>
+    </a>
+  </div> -->
+
+
+  <ul class="todoapp"  id="todo-list">
+      <li ng-repeat="todo in todos"  ng-class="{completed: todo.completed}">
+        <div class="view">
+          <input class="toggle" type="checkbox" ng-model="todo.completed" ng-change="toggleCompleted(todo)">
+          <label ng-dblclick="editTodo(todo)">{{todo.task}}</label>
+          <button class="destroy" ng-click="remove(todo)"></button>
+        </div>
+      </li>
+    </ul>
+
+
+<div class="alert alert-warning text-center" data-ng-hide="!todos.$resolved || todos.length">
+  No todos yet, why don't you <a href="/#!/todos/create">create one</a>?
+</div>
+</section>
