@@ -1,10 +1,10 @@
 'use strict';
 
 (function() {
-	// Todos Controller Spec
-	describe('Todos Controller Tests', function() {
+	// Categories Controller Spec
+	describe('Categories Controller Tests', function() {
 		// Initialize global variables
-		var TodosController,
+		var CategoriesController,
 			scope,
 			$httpBackend,
 			$stateParams,
@@ -44,8 +44,8 @@
 			$httpBackend = _$httpBackend_;
 			$location = _$location_;
 
-			// Initialize the Todos controller.
-			TodosController = $controller('TodosController', {
+			// Initialize the Categories controller.
+			CategoriesController = $controller('CategoriesController', {
 				$scope: scope
 			});
 		}));
